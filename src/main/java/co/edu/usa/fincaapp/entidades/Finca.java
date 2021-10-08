@@ -1,5 +1,6 @@
 package co.edu.usa.fincaapp.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +13,11 @@ public class Finca{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+    @Column(name="address")
     private String address;
+    @Column(name="exension")
     private Double exension;
+    @Column(name="name")
     private String name;
    
     public Long getId() {
