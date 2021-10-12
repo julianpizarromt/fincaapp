@@ -10,9 +10,8 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="fincas")
@@ -29,9 +28,15 @@ public class Finca{
 
     @ManyToOne
     @JoinColumn(name="categoria_id")
-    @JsonIgnoreProperties("fincas")
+    //@JsonIgnoreProperties("fincas")
     private Categoria categoria;
-
+    
+    public Categoria getCategoria(){
+        return categoria;
+    }
+    public void setCategoria(Categoria categoria){
+        this.categoria = categoria;
+    }
    
     public Long getId() {
         return id;
