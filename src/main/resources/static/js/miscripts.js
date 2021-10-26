@@ -111,7 +111,8 @@ function editarFarm(){
         $.ajax({
             url:myurl,
             type:'PUT',
-            data:{id:eID, name: eName, address: eAddress,exension: eExension}, 
+            contentType: "application/json; charset=utf-8",
+            data:JSON.stringify({id:eID, name: eName, address: eAddress,exension: eExension}), 
             success:function(result){
                 $('#tabla-farm tbody').html('');
                 listarFarm();
