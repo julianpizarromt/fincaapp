@@ -25,4 +25,7 @@ public class FincaRepository {
     public void borrar(Long id){
         fincaRepoitorio.deleteById(id);
     }
+    public Finca editar(Finca f){
+        return fincaRepoitorio.save(f);
+    }
 }

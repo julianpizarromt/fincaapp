@@ -4,7 +4,10 @@ $(function(){
     listarFarm();
     
     crearFarm();
-    eliminar();
+    eliminarFarm();
+    mostarEditarFarmModal();
+    editarFarm();
+
 });
 
 function listarFarm(){
@@ -61,7 +64,7 @@ function crearFarm(){
     });
 }
 
-function eliminar(){
+function eliminarFarm(){
     $('#tabla-farm tbody').on('click','.eliminar', function(ev){
         ev.preventDefault();
         let tr = $(this).closest('tr');
@@ -76,4 +79,48 @@ function eliminar(){
         });
       
     });
+}
+
+function mostarEditarFarmModal(){
+    $('#tabla-farm tbody').on('click','.editar', function(ev){
+        ev.preventDefault();
+        let tr = $(this).closest('tr');
+        let id = tr.data('id');
+        let myurl = 'http://localhost:8080/api/Farm/'+id;
+        $.getJSON(myurl)
+        .done(function(data){
+            $('#einputID').val(data.id);
+            $('#einputName').val(data.name);
+             $('#einputAddress').val(data.address);
+            $('#einputExension').val(data.exension);
+            var myModal = new bootstrap.Modal(document.getElementById('editarfincaModal'));
+            myModal.show()
+        });
+        
+      
+    });
+}
+
+function editarFarm(){
+    $("#edit-btn").on('click',function(ev){
+        let myurl = 'http://localhost:8080/api/Farm/update';
+        let eID = $('#einputID').val();
+        let eName= $('#einputName').val();
+        let eAddress = $('#einputAddress').val();
+        let eExension = $('#einputExension').val();
+        $.ajax({
+            url:myurl,
+            type:'PUT',
+            data:{id:eID, name: eName, address: eAddress,exension: eExension}, 
+            success:function(result){
+                $('#tabla-farm tbody').html('');
+                listarFarm();
+                var myModalEl = document.getElementById('editarfincaModal');
+                var modal = bootstrap.Modal.getInstance(myModalEl)
+                modal.hide()
+            }
+        });
+    });
+    
+    
 }
