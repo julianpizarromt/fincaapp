@@ -19,4 +19,7 @@ public class FincaServicio {
     public Finca guardarFinca(Finca finca){
         return fincaRepository.guardar(finca);
     }
+    public void eliminarFinca(Long id){
+        fincaRepository.borrar(id);
+    }
 }

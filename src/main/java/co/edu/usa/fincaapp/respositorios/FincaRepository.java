@@ -22,7 +22,7 @@ public class FincaRepository {
     public Finca guardar(Finca f){
         return fincaRepoitorio.save(f);
     }
-    public void borrar(Finca f){
-        fincaRepoitorio.delete(f);
+    public void borrar(Long id){
+        fincaRepoitorio.deleteById(id);
     }
 }
