@@ -55,7 +55,7 @@ public class FincaController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Finca> actualizar (Finca finca){
+    public ResponseEntity<Finca> actualizar (@RequestBody Finca finca){
         Finca f = fincaServicio.actualizar(finca);
         if(f != null)
             return new ResponseEntity<>(f, HttpStatus.CREATED);
